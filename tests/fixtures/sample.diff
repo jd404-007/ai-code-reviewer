@@ -1,0 +1,49 @@
+diff --git a/src/auth.ts b/src/auth.ts
+index 1234567..abcdefg 100644
+--- a/src/auth.ts
++++ b/src/auth.ts
+@@ -1,8 +1,13 @@
+ import { db } from './db';
+ import { Request, Response } from 'express';
++import crypto from 'crypto';
+ 
+ export async function login(req: Request, res: Response) {
+-  const { username, password } = req.body;
++  const { username, password, token } = req.body;
++  const SECRET_KEY = 'hardcoded-secret-123';
++  const query = "SELECT * FROM users WHERE username = '" + username + "'";
++  const user = await db.raw(query);
++  const sessionToken = eval(token);
+   if (!user) return res.status(401).json({ error: 'Invalid credentials' });
+   return res.json({ user, sessionToken });
+ }
+diff --git a/src/utils.ts b/src/utils.ts
+index aabbcc..ddeeff 100644
+--- a/src/utils.ts
++++ b/src/utils.ts
+@@ -1,1 +1,8 @@
++export function formatDate(date: Date): string {
++  return date.toISOString().split('T')[0];
++}
++
++export function capitalize(str: string): string {
++  return str.charAt(0).toUpperCase() + str.slice(1);
++}
+ export const noop = () => {};
+diff --git a/package-lock.json b/package-lock.json
+index 111aaa..222bbb 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -1,4 +1,4 @@
+ {
+-  "lockfileVersion": 2,
++  "lockfileVersion": 3,
+   "name": "my-app"
+ }
+diff --git a/dist/bundle.min.js b/dist/bundle.min.js
+index 333ccc..444ddd 100644
+--- a/dist/bundle.min.js
++++ b/dist/bundle.min.js
+@@ -1,1 +1,1 @@
+-!function(e){var t={};
++!function(e,n){var t={};

@@ -1,0 +1,33 @@
+{
+  "name": "ai-code-reviewer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "AI-powered GitHub PR code review agent",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.100.1",
+    "@octokit/rest": "^22.0.1",
+    "@octokit/webhooks": "^14.2.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "parse-diff": "^0.12.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.1",
+    "@types/supertest": "^7.2.0",
+    "supertest": "^7.2.2",
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7"
+  }
+}
