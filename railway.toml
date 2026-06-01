@@ -6,7 +6,8 @@
 # We compile TypeScript to JavaScript before starting.
 # Railway runs this once during the build phase.
 builder = "NIXPACKS"
-buildCommand = "npm run build"
+# Overriding the module format during build to prevent the "ReferenceError: exports is not defined" crash.
+buildCommand = "npx tsc --module esnext --target es2022 --outDir dist"
 
 [deploy]
 # After the build, Railway runs this to start the server.
