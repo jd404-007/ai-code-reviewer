@@ -5,8 +5,8 @@
 declare const process: any; // Prevents the 'process' redline error completely
 
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import type { ParsedFile } from "../src/types";
-import { reviewDiff } from "../src/reviewer";
+import type { ParsedFile } from "../src/types.js";
+import { reviewDiff } from "../src/reviewer.js";
 
 // Create a mock tracking function we can intercept inside tests
 const mockGenerateContent = vi.fn();

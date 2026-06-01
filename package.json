@@ -1,10 +1,10 @@
 {
   "name": "ai-code-reviewer",
   "version": "1.0.0",
-  "main": "index.js",
-  
+  "main": "dist/index.js",
+  "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "node --import tsx/esm --watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "vitest run"

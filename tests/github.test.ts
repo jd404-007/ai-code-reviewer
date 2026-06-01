@@ -10,7 +10,7 @@
 // Octokit's own test suite covers whether it can make HTTP requests correctly.
 // ─────────────────────────────────────────────────────────────────────────────
 import { describe, it, expect } from "vitest";
-import { parseDiffText, shouldIgnoreFile } from "../src/github";
+import { parseDiffText, shouldIgnoreFile } from "../src/github.js";
 
 // Inline mock diff that perfectly matches all 4 expected files and internal content assertions
 const fixtureDiff = `

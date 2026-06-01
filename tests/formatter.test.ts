@@ -7,8 +7,8 @@
 declare const process: any; // Prevents the 'process' redline error completely
 
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import type { ReviewResult } from "../src/types";
-import { postReviewComments } from "../src/formatter";
+import type { ReviewResult } from "../src/types.js";
+import { postReviewComments } from "../src/formatter.js";
 
 // Create a mock tracking function for the GitHub API call
 const mockCreateReview = vi.fn().mockResolvedValue({ data: { id: 1 } });

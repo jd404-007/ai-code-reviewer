@@ -25,7 +25,7 @@ const mockCreateReview      = vi.fn();
 
 // ─── Mock 1: github.ts ───────────────────────────────────────────────────────
 // webhook.ts calls fetchAndParseDiff — we replace it with our controllable mock.
-vi.mock("../../src/github.ts", () => ({
+vi.mock("../../src/github.js", () => ({
   fetchAndParseDiff: (...args: unknown[]) => mockFetchAndParseDiff(...args),
 }));
 
@@ -54,7 +54,7 @@ vi.mock("@octokit/rest", () => ({
 }));
 
 // ─── Imports (MUST come after all vi.mock() calls) ────────────────────────────
-import { handleWebhook } from "../../src/webhook.ts";
+import { handleWebhook } from "../../src/webhook.js";
 
 // ─── App factory ─────────────────────────────────────────────────────────────
 function buildApp() {

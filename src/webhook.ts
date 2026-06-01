@@ -11,9 +11,9 @@
 import type { Request, Response } from "express";
 import { Webhooks } from "@octokit/webhooks";
 import { z } from "zod";
-import { fetchAndParseDiff } from "./github";
-import { reviewDiff } from "./reviewer";
-import { postReviewComments } from "./formatter";
+import { fetchAndParseDiff } from "./github.js";
+import { reviewDiff } from "./reviewer.js";
+import { postReviewComments } from "./formatter.js";
 
 // ─── 1. Signature verifier ────────────────────────────────────────────────────
 // We create ONE Webhooks instance at module load time (not inside the handler).

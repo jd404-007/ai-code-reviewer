@@ -9,7 +9,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import { Octokit } from "@octokit/rest";
 import parseDiff from "parse-diff";
-import type { ParsedFile, DiffLine } from "./types";
+import type { ParsedFile, DiffLine } from "./types.js";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 

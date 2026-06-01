@@ -5,7 +5,7 @@ import request from "supertest";
 import { Webhooks } from "@octokit/webhooks";
 
 // ── Mock the three pipeline modules ─────────────────────────────────────────
-vi.mock("../src/github", () => ({
+vi.mock("../src/github.js", () => ({
   fetchAndParseDiff: vi.fn().mockResolvedValue([
     {
       filename: "src/auth.ts",
@@ -14,7 +14,7 @@ vi.mock("../src/github", () => ({
   ]),
 }));
 
-vi.mock("../src/reviewer", () => ({
+vi.mock("../src/reviewer.js", () => ({
   reviewDiff: vi.fn().mockResolvedValue({
     findings: [
       {
@@ -29,11 +29,11 @@ vi.mock("../src/reviewer", () => ({
   }),
 }));
 
-vi.mock("../src/formatter", () => ({
+vi.mock("../src/formatter.js", () => ({
   postReviewComments: vi.fn().mockResolvedValue(undefined),
 }));
 
-import { handleWebhook } from "../src/webhook";
+import { handleWebhook } from "../src/webhook.js";
 
 const TEST_SECRET = "test-webhook-secret";
 

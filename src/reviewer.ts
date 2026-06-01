@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 // import { GoogleGenerativeAI } from "@google/genai";
-import type { ParsedFile, ReviewResult, ReviewFinding } from "./types";
+import type { ParsedFile, ReviewResult, ReviewFinding } from "./types.js";
 
 let _genAI: GoogleGenerativeAI | null = null;
 

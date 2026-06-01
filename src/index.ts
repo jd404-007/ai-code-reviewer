@@ -9,7 +9,7 @@
 import "dotenv/config"; // Must be the FIRST import — loads .env into process.env
 
 import express from "express";
-import { handleWebhook } from "./webhook";
+import { handleWebhook } from "./webhook.js";
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;

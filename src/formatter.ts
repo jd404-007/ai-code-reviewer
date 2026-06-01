@@ -4,7 +4,7 @@
 //   2. A top-level review comment — the summary paragraph
 // ─────────────────────────────────────────────────────────────────────────────
 import { Octokit } from "@octokit/rest";
-import type { ReviewResult, ReviewFinding } from "./types";
+import type { ReviewResult, ReviewFinding } from "./types.js";
 
 let _octokit: Octokit | null = null;
 
