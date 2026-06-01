@@ -1,0 +1,18 @@
+# railway.toml — Railway deployment configuration
+# Railway reads this file automatically when you deploy.
+# Docs: https://docs.railway.app/reference/config-as-code
+
+[build]
+# We compile TypeScript to JavaScript before starting.
+# Railway runs this once during the build phase.
+builder = "NIXPACKS"
+buildCommand = "npm run build"
+
+[deploy]
+# After the build, Railway runs this to start the server.
+# We run the compiled JS (not tsx) in production for performance.
+startCommand = "npm start"
+
+# Railway will restart the container if it crashes.
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3

@@ -169,7 +169,7 @@ async function runReviewPipeline(
   }
 
   // Phase 4: send to AI reviewer
-  console.log(`  🤖 Sending diff to Claude for review...`);
+  console.log(`  🤖 Sending diff to gemini for review...`);
   const reviewResult = await reviewDiff(parsedFiles);
   console.log(`  💬 Got ${reviewResult.findings.length} finding(s)`);
 
