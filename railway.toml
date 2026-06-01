@@ -1,19 +1,12 @@
 # railway.toml — Railway deployment configuration
-# Railway reads this file automatically when you deploy.
-# Docs: https://docs.railway.app/reference/config-as-code
 
 [build]
-# We compile TypeScript to JavaScript before starting.
-# Railway runs this once during the build phase.
 builder = "NIXPACKS"
-# Overriding the module format during build to prevent the "ReferenceError: exports is not defined" crash.
-buildCommand = "npx tsc --module esnext --target es2022 --outDir dist"
+# 1. We strip "type": "module" from package.json dynamically during build
+# 2. We compile cleanly to commonjs
+buildCommand = "sed -i '/\"type\": \"module\"/d' package.json && npx tsc --module commonjs --target es2022 --outDir dist"
 
 [deploy]
-# After the build, Railway runs this to start the server.
-# We run the compiled JS (not tsx) in production for performance.
 startCommand = "npm start"
-
-# Railway will restart the container if it crashes.
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
