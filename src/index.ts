@@ -28,7 +28,10 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ AI Code Reviewer listening on http://localhost:${PORT}`);
-  console.log(`   Webhook endpoint: http://localhost:${PORT}/webhook`);
+// Force PORT to be a number
+const portNumber = Number(PORT);
+
+app.listen(portNumber, "0.0.0.0", () => {
+  console.log(`✅ AI Code Reviewer listening on port ${portNumber}`);
+  console.log(`   Webhook endpoint: /webhook`);
 });
