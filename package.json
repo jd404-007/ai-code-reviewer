@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --import tsx/esm --watch src/index.ts",
-    "build": "tsc",
+    "build": "tsc --clean && tsc",
     "start": "node dist/index.js",
     "test": "vitest run"
   },
