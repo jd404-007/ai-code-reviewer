@@ -4,15 +4,11 @@
 
 [build]
 # We compile TypeScript to JavaScript before starting.
-# Railway runs this once during the build phase.
 builder = "NIXPACKS"
-
-# This dynamically drops "type": "module" from package.json and forces compilation to commonjs
-buildCommand = "sed -i '/\"type\": \"module\"/d' package.json && npx tsc --module commonjs --target es2022 --outDir dist"
+buildCommand = "npm run build"
 
 [deploy]
 # After the build, Railway runs this to start the server.
-# We run the compiled JS (not tsx) in production for performance.
 startCommand = "npm start"
 
 # Railway will restart the container if it crashes.

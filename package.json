@@ -2,7 +2,7 @@
   "name": "ai-code-reviewer",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
+  
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
