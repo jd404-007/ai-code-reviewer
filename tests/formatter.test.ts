@@ -220,7 +220,7 @@ describe("postReviewComments — review body (summary)", () => {
     await postReviewComments("octocat", "hello-world", 42, "abc1234", clean);
 
     const body = mockCreateReview.mock.calls[0][0].body as string;
-    expect(body).toContain("✅");
+    expect(body).toContain("perfect");
     expect(body).toContain("No issues found");
     expect(body).not.toContain("| Severity | Count |");
   });

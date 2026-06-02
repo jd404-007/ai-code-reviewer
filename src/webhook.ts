@@ -105,7 +105,7 @@ export async function handleWebhook(req: Request, res: Response): Promise<void> 
   const result = prPayloadSchema.safeParse(rawPayload);
   if (!result.success) {
     // result.error.flatten() gives a clean summary of which fields were wrong.
-    console.error("❌ Payload shape unexpected:", result.error.flatten());
+    console.error(" Payload shape unexpected:", result.error.flatten());
     res.status(400).json({ error: "Unexpected payload shape" });
     return;
   }
@@ -114,10 +114,10 @@ export async function handleWebhook(req: Request, res: Response): Promise<void> 
 
   // ── Step D: Filter to only the actions we want to review ────────────────
   // GitHub sends pull_request events for many actions:
-  //   "opened"      → new PR just created        ✅ we review this
-  //   "synchronize" → new commit pushed to the PR ✅ we review this
-  //   "closed"      → PR merged or closed         ❌ nothing to review
-  //   "labeled"     → someone added a label       ❌ nothing to review
+  //   "opened"      → new PR just created         we review this
+  //   "synchronize" → new commit pushed to the PR we review this
+  //   "closed"      → PR merged or closed          nothing to review
+  //   "labeled"     → someone added a label       nothing to review
   //   ... etc.
   const reviewableActions = ["opened", "synchronize"];
   if (!reviewableActions.includes(payload.action)) {
@@ -139,12 +139,12 @@ export async function handleWebhook(req: Request, res: Response): Promise<void> 
   const prNumber = payload.number;
   const commitSha = payload.pull_request.head.sha;
 
-  console.log(`\n🔍 Starting review: ${owner}/${repo} PR #${prNumber} (${commitSha.slice(0, 7)})`);
+  console.log(`\n Starting review: ${owner}/${repo} PR #${prNumber} (${commitSha.slice(0, 7)})`);
 
   // We wrap the whole pipeline in a try/catch so an error doesn't crash the server.
   // Since we already sent the response, we just log the error.
   runReviewPipeline(owner, repo, prNumber, commitSha).catch((err: unknown) => {
-    console.error(`❌ Review pipeline failed for PR #${prNumber}:`, err);
+    console.error(` Review pipeline failed for PR #${prNumber}:`, err);
   });
 }
 
@@ -159,9 +159,9 @@ async function runReviewPipeline(
   commitSha: string
 ): Promise<void> {
   // Phase 3: fetch and parse the diff
-  console.log(`  📥 Fetching diff for PR #${prNumber}...`);
+  console.log(`  Fetching diff for PR #${prNumber}...`);
   const parsedFiles = await fetchAndParseDiff(owner, repo, prNumber);
-  console.log(`  📄 Got ${parsedFiles.length} changed file(s)`);
+  console.log(`   Got ${parsedFiles.length} changed file(s)`);
 
   if (parsedFiles.length === 0) {
     console.log("  ℹ️  No changed files found — skipping review");
@@ -169,12 +169,12 @@ async function runReviewPipeline(
   }
 
   // Phase 4: send to AI reviewer
-  console.log(`  🤖 Sending diff to gemini for review...`);
+  console.log(`   Sending diff to gemini for review...`);
   const reviewResult = await reviewDiff(parsedFiles);
-  console.log(`  💬 Got ${reviewResult.findings.length} finding(s)`);
+  console.log(`   Got ${reviewResult.findings.length} finding(s)`);
 
   // Phase 4: post comments back to GitHub
-  console.log(`  📝 Posting comments to PR #${prNumber}...`);
+  console.log(`   Posting comments to PR #${prNumber}...`);
   await postReviewComments(owner, repo, prNumber, commitSha, reviewResult);
-  console.log(`  ✅ Review complete for PR #${prNumber}`);
+  console.log(`   Review complete for PR #${prNumber}`);
 }

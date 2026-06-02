@@ -1,5 +1,4 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-// import { GoogleGenerativeAI } from "@google/genai";
 import type { ParsedFile, ReviewResult, ReviewFinding } from "./types.js";
 
 let _genAI: GoogleGenerativeAI | null = null;
@@ -84,8 +83,8 @@ function parseAIResponse(raw: string, files: ParsedFile[]): ReviewResult {
   try {
     parsed = JSON.parse(cleaned);
   } catch (error) {
-    // ✅ FIXED: Added visible logging so you can debug what broke in your terminal console
-    console.error("❌ AI Reviewer Parsing Failed!");
+    // FIXED: Added visible logging so you can debug what broke in your terminal console
+    console.error(" AI Reviewer Parsing Failed!");
     console.error("--- RAW GEMINI RESPONSE START ---");
     console.log(cleaned);
     console.error("--- RAW GEMINI RESPONSE END ---");

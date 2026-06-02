@@ -32,6 +32,6 @@ app.get("/health", (_req, res) => {
 const portNumber = Number(PORT);
 
 app.listen(portNumber, "0.0.0.0", () => {
-  console.log(`✅ AI Code Reviewer listening on port ${portNumber}`);
+  console.log(` AI Code Reviewer listening on port ${portNumber}`);
   console.log(`   Webhook endpoint: /webhook`);
 });
