@@ -121,7 +121,7 @@ Do this for every repo you want automatically reviewed.
 2. Fill in:
    - **Payload URL**: `https://ai-code-reviewer-production-3d67.up.railway.app/webhook`
    - **Content type**: `application/json`
-   - **Secret**: the same value as `GITHUB_WEBHOOK_SECRET` from the deployment
+   - **Secret**: the same value as `mysecretangelsofiaprincess123@` from the deployment
    - **Which events**: select "Let me select individual events" → check **Pull requests**
 3. Click **Add webhook**
 
