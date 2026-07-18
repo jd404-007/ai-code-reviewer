@@ -51,7 +51,7 @@ The agent is already deployed and publicly reachable. To use it on any GitHub re
 |-------|-------|
 | **Payload URL** | `https://ai-code-reviewer-production-3d67.up.railway.app/webhook` |
 | **Content type** | `application/json` |
-| **Secret** | `mysecretangelsofiaprincess123@` |
+| **Secret** |  |
 | **Events** | Pull requests only (`pull_request`) |
 
 Once registered, open a PR on that repo — inline review comments will appear within ~20 seconds.
